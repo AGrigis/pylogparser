@@ -1,0 +1,24 @@
+2015-11-09T14:59:22,603 - INFO - Processing information will be logged in file '/my/path/freesurfer/fsreconall_BL.log'.
+2015-11-09T14:59:22,603 - INFO - Using 'hopla' version '1.0.0'.
+2015-11-09T14:59:22,603 - INFO - For exitcode values:
+    = 0 - no error was produced.
+    > 0 - the process had an error, and exited with that code.
+    < 0 - the process was killed with a signal of -1 * exitcode.
+2015-11-10T01:33:21,539 - INFO - job_1.cmd = ['scripts/freesurfer_reconall', '-a', '/my/path/t1.nii.gz', '-s', '0001', '-c', 'SetUpFreeSurfer.sh', '-e', '-d', '/my/path/freesurfer']
+2015-11-10T01:33:21,540 - INFO - job_1.fsdir = /my/path/freesurfer
+2015-11-10T01:33:21,540 - INFO - job_1.anatfile = /my/path/t1.nii.gz
+2015-11-10T01:33:21,540 - INFO - job_1.subjectid = 0001
+2015-11-10T01:33:21,540 - INFO - job_1.exitcode = 0
+2015-11-10T01:33:21,541 - DEBUG - job_1.hostname = host.domain
+2015-11-10T01:33:21,541 - DEBUG - job_1.timepoint = V1
+2015-11-10T01:35:21,539 - INFO - job_2.cmd = ['scripts/freesurfer_reconall', '-a', '/my/path/t1.nii.gz', '-s', '0002', '-c', 'SetUpFreeSurfer.sh', '-e', '-d', '/my/path/freesurfer']
+2015-11-10T01:35:21,540 - INFO - job_2.fsdir = /my/path/freesurfer
+2015-11-10T01:35:21,540 - INFO - job_2.anatfile = /my/path/t1.nii.gz
+2015-11-10T01:35:21,540 - INFO - job_2.subjectid = 0002
+2015-11-10T01:35:21,540 - INFO - job_2.exitcode = 0
+2015-11-10T01:35:21,541 - DEBUG - job_2.hostname = host.domain
+2015-11-10T01:35:21,541 - DEBUG - job_2.timepoint = V1
+2015-11-10T01:38:21,539 - INFO - job_3.cmd = ['scripts/freesurfer_reconall', '-a', '/my/path/t1.nii.gz', '-s', '0003', '-c', 'SetUpFreeSurfer.sh', '-e', '-d', '/my/path/freesurfer']
+2015-11-10T01:38:21,540 - INFO - job_3.subjectid = 0003
+2015-11-10T01:38:21,540 - INFO - job_3.exitcode = 1
+2015-11-10T01:38:21,541 - DEBUG - job_3.hostname = host.domain
