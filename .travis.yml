@@ -1,0 +1,20 @@
+language: python
+
+python:
+    - "2.7"
+    - "3.4" 
+
+install:
+    - pip install elasticsearch
+    - pip install nose-exclude
+    - pip install coverage
+    - pip install coveralls
+    - pip install pep8
+    - pip install .
+
+script:
+    - python setup.py nosetests
+    - pep8 . --ignore="E121,E123,E126,E226,E24,E704,E402"
+
+after_success:
+    - coveralls

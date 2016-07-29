@@ -1,0 +1,7 @@
+{
+    "connectomist_config": "/my/path/bin/connectomist", 
+    "connectomist_version": "6.0", 
+    "timestamp": "2016-07-13T09:16:32.993929", 
+    "tool": "pyconnectomist_dtifit", 
+    "tool_version": "2.0.0"
+}

@@ -1,0 +1,7 @@
+{
+    "morphologistdir": "/my/path/morphologist", 
+    "outdir": "/my/path/connectomist", 
+    "preprocdir": "/my/path/connectomist/0002/preproc", 
+    "subjdir": "/my/path/connectomist/0002/dtifit", 
+    "subjectid": "0002"
+}

@@ -1,0 +1,10 @@
+{
+    "scalars": {
+        "adc": "/my/path/connectomist/0001/dtifit/dti_adc.nii.gz", 
+        "fa": "/my/path/connectomist/0001/dtifit/dti_fa.nii.gz", 
+        "gfa": "/my/path/connectomist/0001/dtifit/dti_gfa.nii.gz", 
+        "lambda_parallel": "/my/path/connectomist/0001/dtifit/dti_lambda_parallel.nii.gz", 
+        "lambda_transverse": "/my/path/connectomist/0001/dtifit/dti_lambda_transverse.nii.gz", 
+        "mean_diffusivity": "/my/path/connectomist/0001/dtifit/dti_mean_diffusivity.nii.gz"
+    }
+}

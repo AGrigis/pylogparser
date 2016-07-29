@@ -1,0 +1,18 @@
+# Compiled source #
+###################
+*.o
+*.so
+*.pyc
+
+# Logs and temporaries #
+########################
+*.log
+*~
+.coverage
+
+# Folders #
+###########
+build/
+dist/
+pyLogParser.egg-info/
+__pycache__/

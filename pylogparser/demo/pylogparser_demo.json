@@ -1,0 +1,110 @@
+{
+    "log1": {
+        "type": "logfile",
+        "logfile": "DEMODIR/fsreconall_1.log",
+        "job_pattern": "job_[0-9]+",
+        "timestamp_pattern": "[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}",
+        "custom_patterns": {
+            "code_in_study": {
+                "regex": "subjectid = [0-9]{4}",
+                "splitter": [" = ", 1]
+            },
+            "cmd": {
+                "regex": "cmd = .*",
+                "splitter": [" = ", 1]
+            },
+            "exitcode": {
+                "regex": "exitcode = [0-9]",
+                "splitter": [" = ", 1]
+            },
+            "hostname": {
+                "regex": "hostname = .*",
+                "splitter": [" = ", 1]
+            }
+        },
+        "hierarchy": {
+            "job_id": {
+                "code_in_study": {
+                    "timestamp": {
+                        "custom_data": null
+                    }
+                }
+            }
+        },
+        "jobs_alias": "project2_freesurfer"
+    },
+    "log2": {
+        "type": "logfile",
+        "logfile": "DEMODIR/fsreconall_2.log",
+        "job_pattern": "job_[0-9]+",
+        "timestamp_pattern": "[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}",
+        "custom_patterns": {
+            "code_in_study": {
+                "regex": "subjectid = [0-9]{4}",
+                "splitter": [" = ", 1]
+            },
+            "cmd": {
+                "regex": "cmd = .*",
+                "splitter": [" = ", 1]
+            },
+            "exitcode": {
+                "regex": "exitcode = [0-9]",
+                "splitter": [" = ", 1]
+            },
+            "hostname": {
+                "regex": "hostname = .*",
+                "splitter": [" = ", 1]
+            }
+        },
+        "hierarchy": {
+            "job_id": {
+                "code_in_study": {
+                    "timestamp": {
+                        "custom_data": null
+                    }
+                }
+            }
+        },
+        "jobs_alias": "project2_freesurfer"
+    },
+    "log3": {
+        "type": "logdir",
+        "logfiles": {
+            "DEMODIR/dtifit_0001/runtime.json": true,
+            "DEMODIR/dtifit_0001/inputs.json": false,
+            "DEMODIR/dtifit_0001/outputs.json": false
+        },
+        "job_name": "project2_dtifit",
+        "timestamp_key": "timestamp",
+        "hierarchy": {
+            "job_name": {
+                "subjectid": {
+                    "timestamp": {
+                        "custom_data": null
+                    }
+                }
+            }
+        },
+        "extract_keys": ["subjectid"]
+    },
+    "log4": {
+        "type": "logdir",
+        "logfiles": {
+            "DEMODIR/dtifit_0002/runtime.json": true,
+            "DEMODIR/dtifit_0002/inputs.json": false,
+            "DEMODIR/dtifit_0002/outputs.json": false
+        },
+        "job_name": "project2_dtifit",
+        "timestamp_key": "timestamp",
+        "hierarchy": {
+            "job_name": {
+                "subjectid": {
+                    "timestamp": {
+                        "custom_data": null
+                    }
+                }
+            }
+        },
+        "extract_keys": ["subjectid"]
+    }
+}
