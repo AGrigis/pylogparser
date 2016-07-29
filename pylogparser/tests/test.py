@@ -46,7 +46,7 @@ class LogParserTests(unittest.TestCase):
         """
         parser = LogParser()
         parser.data.clear()
-        for basename in ("fsreconall_1.log", "fsreconall_2.log"):
+        for basename in ("fsreconall_1.txt", "fsreconall_2.txt"):
             logfile = os.path.join(self.demodir, basename)
             parser.parse_logfile(
                 logfile=logfile,
@@ -183,13 +183,5 @@ class LogParserTests(unittest.TestCase):
         self.assertEqual(len(mock_es_index.call_args_list), 1)
 
 
-def test():
-    """ Function to execute unitest
-    """
-    suite = unittest.TestLoader().loadTestsFromTestCase(LogParserTests)
-    runtime = unittest.TextTestRunner(verbosity=2).run(suite)
-    return runtime.wasSuccessful()
-
-
 if __name__ == "__main__":
-    test()
+    unittest.main()

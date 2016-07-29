@@ -45,7 +45,7 @@ for i in range(3):
 """
 We parse data from log files containing multiple processings of the same type.
 """
-for basename in ("fsreconall_1.log", "fsreconall_2.log"):
+for basename in ("fsreconall_1.txt", "fsreconall_2.txt"):
     logfile = os.path.join(demodir, basename)
     parser.parse_logfile(
         logfile=logfile,
@@ -82,9 +82,9 @@ for basename in ("fsreconall_1.log", "fsreconall_2.log"):
     print("-------", basename)
     tree(parser.data, level=2, display_content=False)
 """
-We obtain 3 FreeSurfer records from 'fsreconall_1.log':
+We obtain 3 FreeSurfer records from 'fsreconall_1.txt':
 
-------- fsreconall_1.log
+------- fsreconall_1.txt
  +-project1_freesurfer
  | +-0001
  | | +-2015-11-10T01:33
@@ -93,9 +93,9 @@ We obtain 3 FreeSurfer records from 'fsreconall_1.log':
  | +-0003
  | | +-2015-11-10T01:38
 
-And 1 more from 'fsreconall_2.log':
+And 1 more from 'fsreconall_2.txt':
 
-------- fsreconall_2.log
+------- fsreconall_2.txt
  +-project1_freesurfer
  | +-0001
  | | +-2015-11-10T01:33

@@ -19,7 +19,7 @@ with open(infopath) as open_file:
     exec(open_file.read(), release_info)
 pkgdata = {
     "pylogparser": ["tests/*.py",
-                    "demo/*.log",
+                    "demo/*.txt",
                     "demo/*.json",
                     "demo/*.py",
                     "demo/*/*.json"],
