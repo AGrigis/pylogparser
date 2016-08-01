@@ -6,6 +6,7 @@ python:
 
 install:
     - pip install elasticsearch
+    - pip install dateutil
     - pip install nose-exclude
     - pip install coverage
     - pip install coveralls

@@ -53,6 +53,7 @@ ISRELEASE = True
 VERSION = __version__
 PROVIDES = ["pylogparser"]
 REQUIRES = [
-    "elasticsearch>=2.3.0"
+    "elasticsearch>=2.3.0",
+    "dateutil>=1.5"
 ]
 EXTRA_REQUIRES = {}
