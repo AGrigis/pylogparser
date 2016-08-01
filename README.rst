@@ -253,3 +253,48 @@ Demonstration
     record2 = parser.data["project1_dtifit"]["0001"]["2016-07-13T09:20:00.007074"]
     assert record1 == record2
 
+    """
+    All right, now search all jobs final status.
+    """
+    print("------- check status")
+    status = match(
+        match_name="exitcode", match_value=None, login="boss", password="alpine",
+        url="localhost", port=9200, index=None, doc_type=None, verbose=1)
+    """
+    ------- check status
+    Matches for 'exitcode=None'...
+    {u'project1_dtifit': {u'0001': None, u'0002': None},
+     u'project1_freesurfer': {u'0001': u'0', u'0002': u'0', u'0003': u'0'},
+     u'project2_dtifit': {u'0001': None, u'0002': None},
+     u'project2_freesurfer': {u'0001': u'0', u'0002': u'0', u'0003': u'0'}}
+    """
+
+    """
+    Focus now on a specific processing.
+    """
+    print("------- check status of one processing")
+    status = match(
+        match_name="exitcode", match_value=None, login="boss", password="alpine",
+        url="localhost", port=9200, index="project1_freesurfer", doc_type=None,
+        verbose=1)
+    """
+    ------- check status of one processing
+    Matches for 'exitcode=None'...
+    {'project1_freesurfer': {u'0001': u'0', u'0002': u'0', u'0003': u'0'}}
+
+    """
+
+    """
+    Finally search where an error occured during processings.
+    """
+    print("------- check errors")
+    status = match(
+        match_name="exitcode", match_value="1", login="boss", password="alpine",
+        url="localhost", port=9200, index=None, doc_type=None, verbose=1)
+    """
+    ------- check errors
+    Matches for 'exitcode=1'...
+    {u'project1_freesurfer': {u'0003': u'1'},
+     u'project2_freesurfer': {u'0003': u'1'}}
+    """
+

@@ -11,6 +11,7 @@ import unittest
 import os
 import sys
 import tempfile
+from collections import OrderedDict
 # COMPATIBILITY: since python 3.3 mock is included in unittest module
 python_version = sys.version_info
 if python_version[:2] <= (3, 3):
@@ -22,7 +23,9 @@ else:
 import pylogparser
 from pylogparser import LogParser
 from pylogparser import dump_log_es
+from pylogparser import load_log_es
 from pylogparser import tree
+from pylogparser import match
 
 
 class LogParserTests(unittest.TestCase):
@@ -152,9 +155,10 @@ class LogParserTests(unittest.TestCase):
             extract_keys=["subjectid"])
         tree(parser.data, level=10, display_content=True)
 
+    @mock.patch("elasticsearch.client.indices.IndicesClient.put_mapping")
     @mock.patch("elasticsearch.Elasticsearch.index")
-    def test_es(self, mock_es_index):
-        """ Test the ElasticSearch functions.
+    def test_dump_es(self, mock_es_index, mock_mapping):
+        """ Test the dump ElasticSearch function.
         """
         parser = LogParser()
         parser.data.clear()
@@ -181,6 +185,61 @@ class LogParserTests(unittest.TestCase):
         dump_log_es(parser.data, "dummy", "dummy", url="dummy", port=0,
                     verbose=2)
         self.assertEqual(len(mock_es_index.call_args_list), 1)
+
+    @mock.patch("elasticsearch.client.indices.IndicesClient.get_aliases")
+    @mock.patch("elasticsearch.Elasticsearch.search")
+    def test_load_es(self, mock_es_search, mock_aliases):
+        """ Test the load ElasticSearch function.
+        """
+        mock_es_search.return_value = {
+            "took": 23,
+            "timed_out": False,
+            "_shards": {
+                "total": 1,
+                "successful": 1,
+                "failed": 0
+            },
+            "hits": {
+                "total": 1,
+                "max_score": 1.0,
+                "hits": [{
+                    "_index": "index1",
+                    "_type": "0001",
+                    "_id": "1",
+                    "_score": 1.0,
+                    "_source": {
+                        "test": "ok",
+                    }
+                }]
+            }
+        }
+        mock_aliases.return_value = {"index1": None}
+        data = load_log_es("dummy", "dummy", url="dummy", port=0, verbose=2)
+        self.assertEqual(data["index1"]["0001"]["1"]["test"], "ok")
+
+    @mock.patch("pylogparser.manager.load_log_es")
+    def test_match_es(self, mock_load):
+        """ Test the match ElasticSearch function.
+        """
+        input_data = OrderedDict()
+        input_data["index1"] = OrderedDict()
+        input_data["index1"]["0001"] = OrderedDict()
+        input_data["index1"]["0001"]["1"] = OrderedDict()
+        input_data["index1"]["0001"]["1"]["timestamp"] = "1"
+        input_data["index1"]["0001"]["1"]["exitcode"] = "1"
+        input_data["index1"]["0001"]["2"] = OrderedDict()
+        input_data["index1"]["0001"]["2"]["timestamp"] = "2"
+        input_data["index1"]["0001"]["2"]["exitcode"] = "0"
+        input_data["index1"]["0002"] = OrderedDict()
+        input_data["index1"]["0002"]["1"] = OrderedDict()
+        input_data["index1"]["0002"]["1"]["timestamp"] = "3"
+        input_data["index1"]["0002"]["1"]["exitcode"] = "0"
+        mock_load.return_value = input_data
+        data = match(match_name="exitcode", login="dummy", password="dummy",
+                     url="dummy", port=0, match_value=None, index="index1",
+                     doc_type=None, verbose=0)
+        self.assertEqual(data["index1"]["0001"], "1")
+        self.assertEqual(data["index1"]["0002"], "0")
 
 
 if __name__ == "__main__":

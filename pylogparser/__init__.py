@@ -11,3 +11,4 @@ from .utils import tree
 from .parser import LogParser
 from .manager import dump_log_es
 from .manager import load_log_es
+from .manager import match
